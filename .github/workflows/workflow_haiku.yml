@@ -25,11 +25,7 @@ jobs:
           version: ${{ matrix.config.version }}
           architecture: ${{ matrix.config.architecture }}
           run: |
-            ssh user@localhost "pkgman update -y cmd:gcc cmd:pkg_config gcc_syslibs_devel cmd:cmake cmd:make cmd:ninja \"cmd:lrelease>=5\" \
-              \"devel:libboost_system>=1.69.0\" devel:libexecinfo devel:libfreetype devel:libGL devel:libglew devel:libGLU devel:libiconv \
-	            devel:libjpeg devel:liblz4 devel:liblzma devel:liblzo2 devel:libmypaint devel:libopenblas devel:libopencv_core devel:libpng16\
-	            devel:libQt5Core devel:libsdl2_2.0 devel:libsuperlu devel:libusb_1.0 devel:libz" &&
-            cd toonz &&
-            cmake -B build -S sources -G Ninja -DWITH_TRANSLATION=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-DBOOST_NO_CXX11_CONSTEXPR \
-              -DGLUT_LIB=/system/develop/lib/libglut.so &&
+            ssh user@localhost "pkgman update -y cmd:gcc cmd:pkg_config gcc_syslibs_devel cmd:cmake cmd:make cmd:ninja \"cmd:lrelease>=5\" \"devel:libboost_system>=1.69.0\" devel:libexecinfo devel:libfreetype devel:libGL devel:libglew devel:libGLU devel:libiconv devel:libjpeg devel:liblz4 devel:liblzma devel:liblzo2 devel:libmypaint devel:libopenblas devel:libopencv_core devel:libpng16 devel:libQt5Core devel:libsdl2_2.0 devel:libsuperlu devel:libusb_1.0 devel:libz" &&
+	    cd toonz &&
+            cmake -B build -S sources -G Ninja -DWITH_TRANSLATION=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-DBOOST_NO_CXX11_CONSTEXPR -DGLUT_LIB=/system/develop/lib/libglut.so &&
             ninja -j2
